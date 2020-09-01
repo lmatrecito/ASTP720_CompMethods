@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 """
-Spyder Editor
+Created on Tue Sep  1 13:12:42 2020
 
-This is a temporary script file.
+@author: lizam
 """
+
 
