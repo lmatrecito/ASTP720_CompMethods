@@ -11,38 +11,43 @@ Created on Tue Sep  1 13:12:42 2020
 
 # 1. Bisection Method
 
-def Bisection(x0, x1, f, t = .00001):
-    a = x0                                      # First point typically chosen
-    b = x1                                              # Second point choseen
-    c = (a+b)/2               # Midpoint fomula, used for the Bisection Method
-    y0 = f(a)
-    y1 = f(b)
+def Bisection(a, b, f, t = .00001):
+    x0 = a                                      # First point typically chosen
+    x1 = b                                              # Second point choseen
+    c = (x0+x1)/2             # Midpoint fomula, used for the Bisection Method
+    y0 = f(x0)
+    y1 = f(x1)
     y2 = f(c)
     i = 1
-    while ((c-b)/(b)) > t or ((c-b)/(b)) < -t:       # Threshold for both ends
+    while ((c-x1)/(x1)) > t or ((c-x1)/(x1)) < -t:   # Threshold for both ends
         if y2 * y0 < 0:    # Allows reasonable stop for getting into threshold
-            a = a
-            b = c
-            c = (a+b)/2 
-            y0 = f(a)
-            y1 = f(b)
+            x0 = x0
+            x1 = c
+            c = (x0+x1)/2 
+            y0 = f(x0)
+            y1 = f(x1)
             y2 = f(c)
             i = i + 1
         else:      # If above is not met, this allows for succesful completion
-            a = c
-            b = b
-            c = (a+b)/2
-            y0 = f(a)
-            y1 = f(b)
+            x0 = x0
+            x1 = c
+            c = (x0+x1)/2 
+            y0 = f(x0)
+            y1 = f(x1)
             y2 = f(c)
             i = i + 1      
     return(c, i)
-    
+
 
 # 2. Newton Method
 
+def f(x, xn):
+    return((1+x**2)**(-1/2) - (1/2))
+def df(x, xn):
+    return(-x/((1+x**2)**(3/2)))
+
 def Newton(xn, t = .00001):
-    x1 = xn - f(xn)/df(xn)                         # Formula for Netwon Method
+    x1 = xn - f(xn)/(df(xn))                        # Formula for Netwon Method
     i = 1
     while (x1-xn)/xn > t or (x1-xn)/xn < -t:        # Again, setting threshold
         xn = x1
