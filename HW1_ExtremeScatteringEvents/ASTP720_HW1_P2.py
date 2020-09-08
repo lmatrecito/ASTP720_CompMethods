@@ -5,9 +5,9 @@ Created on Tue Sep  8 00:18:56 2020
 @author: lizam
 """
 
-
 # Homework 1 Problem 2 - Pseudo-isothermal sphere, calculate full width
 # at half maximum in terms of r_c
+
 
 from ASTP720_HW1_P1 import Bisection
 from ASTP720_HW1_P1 import Newton
