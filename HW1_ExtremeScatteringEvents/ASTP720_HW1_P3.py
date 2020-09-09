@@ -14,6 +14,7 @@ import math as m
 from ASTP720_HW1_P1 import Bisection
 import matplotlib.pyplot as plt
 
+
 # Given values
 P = 1                            # period of observer's circular orbit (years)
 D = 1                                                 # diameter of lens (kpc)
@@ -30,19 +31,22 @@ re = 2.83e-13
 
 # Solving for each value of x'
 xps = 1 + (((l**2)*re*N0*D)/(m.pi*a**2))                # Splitting up x' eqn.
-def f(xp, c):
-    def y(x):
-        return((x*((xps)*m.exp(-x/a)**2)) - xp)      # x' eqn. as a func. of y
-    return (y)
-# Creating a loop for 'orbit' of observer relative to lens
-r = []
+def f(xp):
+    def f(x):
+        return((x*((xps)*m.exp((-x/a)**2)) - xp))      # x' eqn. as a func. of y
+    return(f)
+
+# Creating a loop for 'orbit' of observer relative to lens and adding results 
+# to original empty array
 q = []
-for i in range(12):
+r = [] 
+for i in range(12):     # 12 for number of months in a year, Period
     xp = 1 + m.cos((i*m.pi)/6)
-    q.append(xp)
-    z, r = Bisection(0.001, 2, f(xp, 1 - xps))
-    r.append(z)
-print(r)
-print(q)
-plt.clf()    
+    r.append(xp)
+    z = Bisection(.0001, 2, f(xps))
+    q.append(z)
+
+plt.clf()   
+for i in range(12):
+    plt.plot([r[i], q[i]])
     

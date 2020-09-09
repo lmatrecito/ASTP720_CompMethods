@@ -12,6 +12,10 @@ Created on Tue Sep  1 13:12:42 2020
 # 1. Bisection Method
 
 def Bisection(a, b, f, t = .00001):
+    def f(x):
+        return(x**2)
+    def df(x):
+        return(2*x)
     x0 = a                                      # First point typically chosen
     x1 = b                                              # Second point choseen
     c = (x0+x1)/2             # Midpoint fomula, used for the Bisection Method
@@ -42,10 +46,10 @@ def Bisection(a, b, f, t = .00001):
 # 2. Newton Method
 
 def Newton(xn, t = .00001):
-    def f(x, xn):
-        return((1+x**2)**(-1/2) - (1/2))
-    def df(x, xn):
-        return(-x/((1+x**2)**(3/2)))
+    def f(xn):
+        return(xn**2)
+    def df(xn):
+        return(2*xn)
     x1 = xn - f(xn)/(df(xn))                        # Formula for Netwon Method
     i = 1
     while (x1-xn)/xn > t or (x1-xn)/xn < -t:        # Again, setting threshold
@@ -58,10 +62,10 @@ def Newton(xn, t = .00001):
 # 3. Secant Method    
 
 def Secant(x0, x1, t = .00001):
-    def f(x, xn):
-        return((1+x**2)**(-1/2) - (1/2))
-    def df(x, xn):
-        return(-x/((1+x**2)**(3/2)))
+    def f(x):
+        return(x**2)
+    def df(x):
+        return(2*x)
     a = x0
     b = x1
     y0 = f(a)
