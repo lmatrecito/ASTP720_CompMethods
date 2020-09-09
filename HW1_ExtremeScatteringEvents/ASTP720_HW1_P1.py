@@ -41,12 +41,11 @@ def Bisection(a, b, f, t = .00001):
 
 # 2. Newton Method
 
-def f(x, xn):
-    return((1+x**2)**(-1/2) - (1/2))
-def df(x, xn):
-    return(-x/((1+x**2)**(3/2)))
-
 def Newton(xn, t = .00001):
+    def f(x, xn):
+        return((1+x**2)**(-1/2) - (1/2))
+    def df(x, xn):
+        return(-x/((1+x**2)**(3/2)))
     x1 = xn - f(xn)/(df(xn))                        # Formula for Netwon Method
     i = 1
     while (x1-xn)/xn > t or (x1-xn)/xn < -t:        # Again, setting threshold
@@ -59,6 +58,10 @@ def Newton(xn, t = .00001):
 # 3. Secant Method    
 
 def Secant(x0, x1, t = .00001):
+    def f(x, xn):
+        return((1+x**2)**(-1/2) - (1/2))
+    def df(x, xn):
+        return(-x/((1+x**2)**(3/2)))
     a = x0
     b = x1
     y0 = f(a)

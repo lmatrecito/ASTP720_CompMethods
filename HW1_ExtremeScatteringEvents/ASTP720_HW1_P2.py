@@ -23,7 +23,7 @@ m = []
 n = []
 t = [0.1, 0.01, 0.001, 0.0001, 0.00001, 0.000001, 0.0000001]
 for j in range (7):
-    a, i = Bisection(0.00001, 3, f, t[j])
+    a, i = Bisection(0.001, 3, f, t[j])
     l.append(i)
     xn, i = Newton(1.5, t[j])
     m.append(i)

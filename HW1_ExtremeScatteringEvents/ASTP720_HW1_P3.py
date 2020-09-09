@@ -35,14 +35,14 @@ def f(xp, c):
         return((x*((xps)*m.exp(-x/a)**2)) - xp)      # x' eqn. as a func. of y
     return (y)
 # Creating a loop for 'orbit' of observer relative to lens
-q = []
 r = []
+q = []
 for i in range(12):
     xp = 1 + m.cos((i*m.pi)/6)
-    r.append(xp)
-    z, q = Bisection(0, 2, f(xp, 1 - xps))
-    q.append(z)
-print(q)
+    q.append(xp)
+    z, r = Bisection(0.001, 2, f(xp, 1 - xps))
+    r.append(z)
 print(r)
+print(q)
 plt.clf()    
     
