@@ -9,7 +9,6 @@ Created on Tue Sep  8 01:32:28 2020
 # of N_e(x) halfway in between all x-values
 
 
-#import pandas as pd
 from ASTP720_HW1_P5 import interpolation
 import matplotlib.pyplot as plt
 import pandas as pd
