@@ -18,6 +18,12 @@ def f(x):
    return(x**2)
 def df(x):
    return(2*x)
+
+# Testing out Mike's f(x) formula with my Problem
+#def f(x):
+#    return((1+x**2)**(-1/2)-(1/2))
+#def df(x):
+#    return(-x/((1+x**2)**(3/2)))
     
 # Empty arrays help with plotting (setting all matrices equal)
 l = []
