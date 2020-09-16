@@ -20,12 +20,23 @@ def der(f, x):
     h = 0.000001           
     df = (f(x+h) - f(x)) / (h)                # Definition of the derivative
     return(df)
-#n = der(f, 2)
-#print(n)
+#pd = der(f, 2)
+#print(pd)
 
 # Three Integration Functions
-# 1. Midpoint Rule 
+# Comments after every integration function is to check & compare answers
 
+# 1. Midpoint Rule 
+def mid(f, a, b, n):
+    h = (b-a) / n
+    m = 0
+    for i in range(n):
+        m += f((a + h/2) + i*h)
+    m *= h
+    return(m)
+#pm = mid(f, 0, 1, 1000)
+#print('Midpoint =', pm)
+    
 # 2. Trapezoidal Rule
 def trap(f, a, b, n):
     h = (b-a) / n    # the higher the n, the better the convergence
@@ -35,8 +46,8 @@ def trap(f, a, b, n):
         ig += h * f(a + i*h)
     ig += h * f(b)
     return(ig)
-#p = trap(f, 0, 1, 1000)
-#print(p)
+#pt = trap(f, 0, 1, 1000)
+#print('Trapezoidal =', pt)
 
 # 3. Simpson's Rule
 def simp(f, a, b, n):
@@ -52,6 +63,6 @@ def simp(f, a, b, n):
         k += 2*f(x)
         x += 2*h
     return((h/3) * (f(a) + f(b) + k))
-#p = simp(f, 0, 1, 1000)
-#print(p)
+#ps = simp(f, 0, 1, 1000)
+#print('Simpsons =', ps)
 
