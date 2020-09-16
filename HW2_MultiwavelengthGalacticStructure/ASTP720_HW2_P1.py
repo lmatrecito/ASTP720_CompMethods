@@ -15,17 +15,17 @@ def f(x):
     return x**2                    # Can choose any function, this one is easy
 
 
+# Comments after every function is to check & compare answers
 # Library that performs at least one derivative
 def der(f, x):       
     h = 0.000001           
-    df = (f(x+h) - f(x)) / (h)                # Definition of the derivative
+    df = (f(x+h) - f(x)) / (h)                  # Definition of the derivative
     return(df)
 #pd = der(f, 2)
 #print(pd)
 
 # Three Integration Functions
-# Comments after every integration function is to check & compare answers
-
+    
 # 1. Midpoint Rule 
 def mid(f, a, b, n):
     h = (b-a) / n
@@ -39,7 +39,7 @@ def mid(f, a, b, n):
     
 # 2. Trapezoidal Rule
 def trap(f, a, b, n):
-    h = (b-a) / n    # the higher the n, the better the convergence
+    h = (b-a) / n               # the higher the n, the better the convergence
     ig = 0
     ig += h * f(a)
     for i in range(1, n):
