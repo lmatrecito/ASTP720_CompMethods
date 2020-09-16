@@ -57,7 +57,6 @@ def simp(f, a, b, n):
     for i in range(1, n//2 + 1):    
         k += 4*f(x)
         x += 2*h
-        
     x = a + 2*h
     for i in range(1, n//2):
         k += 2*f(x)
