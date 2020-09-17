@@ -39,10 +39,20 @@ for i in range (30):
     Md.append(Mdh)
     r = r + r   # Without this, my code gave me the same number for the radius
 
+fig1, ax1 = plt.subplots()
+ax1.plot(rad, Mr)
+ax1.set_title("Mass Enclosed in a Galaxy")
+ax1.set_xlabel("Radius (cm)")
+ax1.set_ylabel("Mass (g)")
+ax1.set_xscale('log')
+ax1.set_yscale('log')
 
-#plt.plot(rad, Mr)
-#plt.plot(rad, Md)
-plt.plot(r, Mr)
-plt.xscale('log')
-plt.yscale('log')
+fig2, ax2 = plt.subplots()
+ax2.plot(rad, Md)
+ax2.set_title("Mass of Dark Matter Halo in a Galaxy")
+ax2.set_xlabel("Radius (cm)")
+ax2.set_ylabel("Mass (g)")
+ax2.set_xscale('log')
+
+
 
