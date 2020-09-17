@@ -28,76 +28,56 @@ class Matrix(object):
         self.m = m
         self.n = n
     def __getitem__(self, idx):
-        return self.rows[idx]
+        return(self.rows[idx])
     def __setitem__(self, idx, item):
         self.rows[idx] = item
     def __str__(self):
         s='\n'.join([' '.join([str(item) for item in row]) for row in self.rows])
-        return s + '\n'
+        return(s + '\n')
     def __repr__(self):
         s=str(self.rows)
         rank = str(self.getRank())
         rep="Matrix: \"%s\", rank: \"%s\"" % (s,rank)
-        return rep
+        return(rep)
     def reset(self): # Reset Matrix data
         self.rows = [[] for x in range(self.m)]
-            
-
-  
-    def Transpose(self): # Returns transpose, keeps original
-        m, n = self.n, self.m
-        mat = Matrix(m, n)
-        mat.rows =  [list(item) for item in zip(*self.rows)]
-        
-        return mat
-
+    
     def getRank(self):
         return (self.m, self.n)
 
-    def __eq__(self, mat):
-        """ Test equality """
-
-        return (mat.rows == self.rows)
+# Obtaining Transponse of a matrix
+    def transpose(self):                 # Changes original
+        self.m, self.n = self.n, self.m
+        self.rows = [list(item) for item in zip(*self.rows)]
+    def getTranspose(self):                 # Does not change original
+        m, n = self.n, self.m
+        mat = Matrix(m, n)
+        mat.rows =  [list(item) for item in zip(*self.rows)]
+        return(mat)
         
-    def __add__(self, mat):
-        """ Add a matrix to this matrix and
-        return the new matrix. Doesn't modify
-        the current matrix """
-        
+# Adding matrices
+    def __add__(self, mat): 
         if self.getRank() != mat.getRank():
             raise MatrixError('Trying to add matrixes of varying rank!')
-
-        ret = Matrix(self.m, self.n)
-        
+        ret = Matrix(self.m, self.n)        
         for x in range(self.m):
             row = [sum(item) for item in zip(self.rows[x], mat[x])]
             ret[x] = row
+        return(ret)
 
-        return ret
-
-    def __sub__(self, mat):
-        """ Subtract a matrix from this matrix and
-        return the new matrix. Doesn't modify
-        the current matrix """
-        
+# Subtracting matrices
+    def __sub__(self, mat):  
         if self.getRank() != mat.getRank():
             raise MatrixError('Trying to add matrixes of varying rank!')
-
         ret = Matrix(self.m, self.n)
-        
         for x in range(self.m):
             row = [item[0]-item[1] for item in zip(self.rows[x], mat[x])]
             ret[x] = row
-
-        return ret
-
+        return(ret)
+    
+# Multiplying matrices
     def __mul__(self, mat):
-        """ Multiple a matrix with this matrix and
-        return the new matrix. Doesn't modify
-        the current matrix """
-        
         matm, matn = mat.getRank()
-        
         if (self.n != matm):
             raise MatrixError('Matrices cannot be multipled!')
         
