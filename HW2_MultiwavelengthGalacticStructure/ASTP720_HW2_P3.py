@@ -100,7 +100,7 @@ class Matrix(object):
     def save(self, filename):
         open(filename, 'w').write(str(self))
       
-# Makes random matrix
+# Makes matrix
     @classmethod
     def _makeMatrix(cls, rows):
         m = len(rows)
@@ -112,7 +112,7 @@ class Matrix(object):
         mat.rows = rows
         return(mat)
         
-# Makes random matrix with elements ordered low-high
+# Makes random matrix with elements in range low to high
     @classmethod
     def makeRandom(cls, m, n, low=0, high=10):
         obj = Matrix(m, n, init=False)
