@@ -104,7 +104,37 @@ class Matrix(object):
 
     def save(self, filename):
         open(filename, 'w').write(str(self))
-      
+
+# Inverting matrix
+#  def inverse(self, mat):  
+        
+# Calculating trace
+    def trace(self):
+        val = 0
+        if self.row == self.column:
+            for i in range(self.row):
+                val = val+self.m[i][i]
+        else:
+            print('The Trace does not exist')
+        return(val)
+    
+# Calculating determinant
+    def Minor(self,i,j):
+        C = Matrix([self.rows-1,self.cols-1])
+        C.m = [row[:j] + row[j+1:] for row in (self.m[:i]+self.m[i+1:])]
+        return C
+    def Deter(self):
+        if len(self.m) == 2:
+            return self.m[0][0]*self.m[1][1]-self.m[0][1]*self.m[1][0]
+        determinant = 0
+        for c in range(len(self.m)):
+            determinant += ((-1)**c)*self.m[0][c]*self.MatrixMinor(0,c).Deter()
+        return determinant    
+
+# Return LU decomposition
+        
+        
+        
 # Makes matrix
     @classmethod
     def _makeMatrix(cls, rows):

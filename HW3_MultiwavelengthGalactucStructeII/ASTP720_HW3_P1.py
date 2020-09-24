@@ -7,6 +7,7 @@ Created on Wed Sep 23 19:55:44 2020
 
 
 # Homework 3 Problem 1 - Unit Testing: Checking to see if stuff works
+# from HW2 matrix class
 
 import unittest 
 from ASTP720_HW2_P3 import Matrix
@@ -50,12 +51,18 @@ class MatrixTests(unittest.TestCase):
         self.assertTrue(r2==(30,25))
         m2.transpose()
         self.assertTrue(m2 == m1)
+
 # Identity matrix unit test
     def testId(self):
         m1 = Matrix.makeId(10)
         m2 = Matrix.makeRandom(4, 10)
         m3 = m2*m1
         self.assertTrue(m3 == m2)
+        
+# Trace unit test
+# Determinant unit test
+# Inversion unit test
+# LU decomp unit test
 
 
 if __name__ == "__main__":
