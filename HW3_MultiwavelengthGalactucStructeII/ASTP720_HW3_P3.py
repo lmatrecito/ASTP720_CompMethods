@@ -156,10 +156,10 @@ ryinitr = np.array([1.0/10])
 
 
 # Plotting to compare
-plt.plot(tsef, ysef, c='k', label='Forward Eulers')
-plt.plot(tseb, yseb, c='m', label='Backward Eulers')
+plt.plot(tsef, ysef, linestyle='--', c='k', label='Forward Eulers')
+plt.plot(tseb, yseb, linestyle=':',  c='m', label='Backward Eulers')
 plt.plot(tsr, ysr, c='r', label='RK4')
-plt.plot(tsh, ysh, c='orange', label='Heuns')
+plt.plot(tsh, ysh, linestyle='-.', c='orange', label='Heuns')
 # Exact Solution
 dt = int((rx[-1]-rx[0])/rh)
 t = [rx[0]+i*rh for i in range(dt+1)] 
@@ -168,7 +168,6 @@ for i in range(dt+1):
     ye = (1.0/10)*np.exp(-2*t[i]) + t[i]*np.exp(-2*t[i])
     yexact.append(ye)
 plt.plot(t, yexact, 'b', label='Exact Solution')
-
 # Plot Specifics
 plt.ylim(0, .5)
 plt.xlim(0, 2)
