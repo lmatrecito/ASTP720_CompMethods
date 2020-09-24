@@ -10,10 +10,11 @@ Created on Tue Sep 15 17:17:12 2020
 # class
 
 import random
-import operator
 import sys
-import unittest
 
+# Exception case
+class MatrixError(Exception):
+    pass
 
 # Creating a matrix to use for the rest of the code
 class Matrix(object):
@@ -51,7 +52,11 @@ class Matrix(object):
         return(mat)
     def getRank(self):
         return (self.m, self.n)
-        
+ 
+# Test equality
+    def __eq__(self, mat):
+        return(mat.rows == self.rows)
+       
 # Adding matrices
     def __add__(self, mat): 
         if self.getRank() != mat.getRank():
@@ -157,3 +162,8 @@ class Matrix(object):
             rows.append(row)
         return cls._makeMatrix(rows)
 
+# Create matrix by passing a list of lists
+    @classmethod
+    def fromList(cls, listoflists):
+        rows = listoflists[:]
+        return cls._makeMatrix(rows)
