@@ -10,43 +10,48 @@ Created on Wed Sep 23 20:11:02 2020
 # Heun's method, and the explicit RK4 method
 
 import numpy as np
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 
 # Defining a function to use for the following ODE package
 def myfunc(x, y):
     dy = np.zeros((len(y)))
     dy[0] = np.exp(-2*x) - 2*y[0]
     return(dy)
+def pend(y, t, b, c):
+    b = 0.25
+    c = 5.0
+    theta, omega = y
+    dydt = [omega, -b*omega - c*np.sin(theta)]
+    return(dydt)
 # Function module used to evaluate equations
 def feval(funcName, *args):
     return(eval(funcName)(*args))
 
-
 # Euler's Methods:
 # Forward Euler's Method
 def forwardE(func, yinit, x_range, h):
-    fnODEs = len(yinit)                                        # Number of ODEs
-    fsub_int = int((x_range[-1] - x_range[0]) / h)    # Number of sub-intervals
-    fx = x_range[0]                                   # Initializes variables x
-    fy = yinit                                        # Initializes variables y
+    fnODEs = len(yinit)                                       # Number of ODEs
+    fsub_int = int((x_range[-1] - x_range[0]) / h)   # Number of sub-intervals
+    fx = x_range[0]                                  # Initializes variables x
+    fy = yinit                                       # Initializes variables y
     # Creates arrays for solutions
     fxsol = [fx]
     fysol = [fy[0]]
     for i in range(fsub_int):
-        fyp = feval(func, fx, fy)                               # Evaluates dy/dx
+        fyp = feval(func, fx, fy)                            # Evaluates dy/dx
         for j in range(fnODEs):
             fy[j] = fy[j] + h*fyp[j] 
-        fx += h                                          # Increases the x-step
+        fx += h                                         # Increases the x-step
         fxsol.append(fx)         
         for r in range(len(fy)):
             fysol.append(fy[r])             
     return([fxsol, fysol])
 # Testing out Forward Euler
 # Setting parameters first, easier this way
-fh = 0.001
-fx = [0.0, 2.0]
-fyinitef = [4.0]
-[tsef, ysef] = forwardE('myfunc', fyinitef, fx, fh)
+# fh = 0.001
+# fx = [0.0, 2.0]
+# fyinitef = [4.0]
+# [tsef, ysef] = forwardE('myfunc', fyinitef, fx, fh)
 
 
 
@@ -73,13 +78,13 @@ def backwardE(func, yinit, x_range, h):
         bx += h
         bxsol.append(bx)
         for r in range(len(by)):
-            bysol.append(by[r])  # Saves all new y's
+            bysol.append(by[r])                            # Saves all new y's
     return([bxsol, bysol])
 # Testing out Backward Euler
-bh = 0.001
-bx = [0.0, 2.0]
-byiniteb = [4.0]
-[tseb, yseb] = backwardE('myfunc', byiniteb, bx, bh)
+# bh = 0.001
+# bx = [0.0, 2.0]
+# byiniteb = [4.0]
+# [tseb, yseb] = backwardE('myfunc', byiniteb, bx, bh)
 
 
 
@@ -104,10 +109,10 @@ def Heuns(func, yinit, x_range, h):
             hysol.append(hy[r])
     return([hxsol, hysol])
 # Testing out Heun's
-hh = 0.001
-hx = [0.0, 2.0]
-hyinith = [4.0]
-[tsh, ysh] = Heuns('myfunc', hyinith, hx, hh)
+# hh = 0.001
+# hx = [0.0, 2.0]
+# hyinith = [4.0]
+# [tsh, ysh] = Heuns('myfunc', hyinith, hx, hh)
     
 
 
@@ -147,29 +152,29 @@ def RK4(func, yinit, x_range, h):
     return(rsol)
 # Testing out RK4
 # Setting parameters
-rh = 0.001
-rx = np.array([0.0, 2.0])
-ryinitr = np.array([1.0/10])
-[tsr, ysr] = RK4('myfunc', ryinitr, rx, rh)
+# rh = 0.001
+# rx = np.array([0.0, 2.0])
+# ryinitr = np.array([1.0/10])
+# [tsr, ysr] = RK4('myfunc', ryinitr, rx, rh)
 # print([ts, ys])
 
 
 
 # Plotting to compare
-plt.plot(tsef, ysef, linestyle='--', c='k', label='Forward Eulers')
-plt.plot(tseb, yseb, linestyle=':',  c='m', label='Backward Eulers')
-plt.plot(tsr, ysr, c='r', label='RK4')
-plt.plot(tsh, ysh, linestyle='-.', c='orange', label='Heuns')
+# plt.plot(tsef, ysef, linestyle='--', c='k', label='Forward Eulers')
+# plt.plot(tseb, yseb, linestyle=':',  c='m', label='Backward Eulers')
+# plt.plot(tsr, ysr, c='r', label='RK4')
+# plt.plot(tsh, ysh, linestyle='-.', c='orange', label='Heuns')
 # Exact Solution
-dt = int((rx[-1]-rx[0])/rh)
-t = [rx[0]+i*rh for i in range(dt+1)] 
-yexact = []
-for i in range(dt+1):
-    ye = (1.0/10)*np.exp(-2*t[i]) + t[i]*np.exp(-2*t[i])
-    yexact.append(ye)
-plt.plot(t, yexact, 'b', label='Exact Solution')
+# dt = int((rx[-1]-rx[0])/rh)
+# t = [rx[0]+i*rh for i in range(dt+1)] 
+# yexact = []
+# for i in range(dt+1):
+#    ye = (1.0/10)*np.exp(-2*t[i]) + t[i]*np.exp(-2*t[i])
+#    yexact.append(ye)
+# plt.plot(t, yexact, 'b', label='Exact Solution')
 # Plot Specifics
-plt.ylim(0, .5)
-plt.xlim(0, 2)
-plt.legend()
-plt.title('ODE Methods')
+# plt.ylim(0, .5)
+# plt.xlim(0, 2)
+# plt.legend()
+# plt.title('ODE Methods')
