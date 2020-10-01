@@ -29,10 +29,11 @@ y0 = [np.pi - 0.1, 0.0]
 t = np.linspace(0, 10, 101)
 sol = odeint(pend, y0, t, args=(b, c))           # ode solver from scipy
 # Plot Stuff
-plt.plot(t, sol[:, 0], 'b', label='theta(t)')
-plt.plot(t, sol[:, 1], 'g', label='omega(t)')
+plt.plot(t, sol[:, 0], 'b', label='T(t)')
+plt.plot(t, sol[:, 1], 'g', label='O(t)')
 plt.legend(loc='best')
 plt.xlabel('t')
+plt.ylabel('sol')
 plt.grid()
 plt.show()
 
