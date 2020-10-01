@@ -17,17 +17,22 @@ def myfunc(x, y):
     dy = np.zeros((len(y)))
     dy[0] = np.exp(-2*x) - 2*y[0]
     return(dy)
-def pend(y, t, b, c):
+def pend(y, t):
+    b = 0.25
+    c = 5.0
     theta, omega = y
     dydt = [omega, -b*omega - c*np.sin(theta)]
     return(dydt)
 # Function module used to evaluate equations
 def feval(funcName, *args):
+    b = 0.25
+    c = 5.0
     return(eval(funcName)(*args))
 
 # Euler's Methods:
 # Forward Euler's Method
 def forwardE(func, yinit, x_range, h):
+    print((x_range[-1] - x_range[0]) / h)
     fnODEs = len(yinit)                                       # Number of ODEs
     fsub_int = int((x_range[-1] - x_range[0]) / h)   # Number of sub-intervals
     fsubint = np.vectorize(fsub_int)
@@ -45,6 +50,7 @@ def forwardE(func, yinit, x_range, h):
         for r in range(len(fy)):
             fysol.append(fy[r])             
     return([fxsol, fysol])
+
 # Testing out Forward Euler
 # Setting parameters first, easier this way
 # fh = 0.001
@@ -62,7 +68,8 @@ def mult(vector, scalar):
         newv[i] = vector[i]*scalar
     return(newv)
 # Backward Euler's
-def backwardE(func, yinit, x_range, h):
+def backwardE(func, yinit, x_range):
+    h = .001
     bnODEs = len(yinit)
     bsub_int = int((x_range[-1] - x_range[0]) / h)
     bx = x_range[0]
@@ -88,7 +95,8 @@ def backwardE(func, yinit, x_range, h):
 
 
 # Heun's Method
-def Heuns(func, yinit, x_range, h):
+def Heuns(func, yinit, x_range):
+    h = .001
     hnODEs = len(yinit)
     hsub_int = int((x_range[-1] - x_range[0])/h)
     hx = x_range[0]

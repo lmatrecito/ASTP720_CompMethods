@@ -18,6 +18,8 @@ from ASTP720_HW3_P3 import forwardE, backwardE, Heuns, RK4
 
 # Scipy system for a pendulum
 def pend(y, t, b, c):
+    b = 0.25
+    c = 5.0
     theta, omega = y
     dydt = [omega, -b*omega - c*np.sin(theta)]
     return(dydt)
@@ -35,5 +37,15 @@ plt.grid()
 plt.show()
 
 # My ODE solvers
-[tE, yE] = forwardE('pend', y0, t, (b,c))
-plt.plot(tE, yE[:0], 'k', label='Forward Eulers')
+# [tF, yF] = forwardE('pend', y0, t)
+# plt.plot(t, yF[:,0], 'k', label='Forward Eulers - Theta')
+# plt.plot(t, yF[:,1], 'k', label='Forward Eulers - Omega')
+# [tB, yB] = backwardE('pend', y0, t)
+# plt.plot(t, yB[:,0], 'b', label='Backward Eulers - Theta')
+# plt.plot(t, yB[:,1], 'b', label='Backward EUlers - Omega')
+# [tH, yH] = Heuns('pend', y0, t)
+# plt.plot(t, yH[:,0], 'g', label='Heuns - Theta')
+# plt.plot(t, yH[:,1], 'g', label='Heuns - Omega')
+# [tR, yR] = RK4('pend', y0, t, .001)
+# plt.plot(t, yR[:,0], 'r', label='RK4 - Theta')
+# plt.plot(t, yR[:,0], 'r', label='RK4 - Omega')
