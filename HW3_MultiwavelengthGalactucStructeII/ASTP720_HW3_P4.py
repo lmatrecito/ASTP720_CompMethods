@@ -18,8 +18,6 @@ from ASTP720_HW3_P3 import forwardE, backwardE, Heuns, RK4
 
 # Scipy system for a pendulum
 def pend(y, t, b, c):
-    b = 0.25
-    c = 5.0
     theta, omega = y
     dydt = [omega, -b*omega - c*np.sin(theta)]
     return(dydt)
@@ -37,5 +35,5 @@ plt.grid()
 plt.show()
 
 # My ODE solvers
-[t, yE] = forwardE('pend', y0, t, .0001)
-plt.plot(t, yE[:0], 'k', label='Forward Eulers')
+[tE, yE] = forwardE('pend', y0, t, (b,c))
+plt.plot(tE, yE[:0], 'k', label='Forward Eulers')

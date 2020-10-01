@@ -18,8 +18,6 @@ def myfunc(x, y):
     dy[0] = np.exp(-2*x) - 2*y[0]
     return(dy)
 def pend(y, t, b, c):
-    b = 0.25
-    c = 5.0
     theta, omega = y
     dydt = [omega, -b*omega - c*np.sin(theta)]
     return(dydt)
@@ -32,12 +30,13 @@ def feval(funcName, *args):
 def forwardE(func, yinit, x_range, h):
     fnODEs = len(yinit)                                       # Number of ODEs
     fsub_int = int((x_range[-1] - x_range[0]) / h)   # Number of sub-intervals
+    fsubint = np.vectorize(fsub_int)
     fx = x_range[0]                                  # Initializes variables x
     fy = yinit                                       # Initializes variables y
     # Creates arrays for solutions
     fxsol = [fx]
     fysol = [fy[0]]
-    for i in range(fsub_int):
+    for i in range(fsubint):
         fyp = feval(func, fx, fy)                            # Evaluates dy/dx
         for j in range(fnODEs):
             fy[j] = fy[j] + h*fyp[j] 
