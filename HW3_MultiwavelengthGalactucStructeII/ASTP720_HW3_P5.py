@@ -6,4 +6,5 @@ Created on Wed Sep 23 20:11:25 2020
 """
 
 
-# Homework 3 Problem 5
+# Homework 3 Problem 5 - Test three methods against the following stiff
+# ODE: see HW.

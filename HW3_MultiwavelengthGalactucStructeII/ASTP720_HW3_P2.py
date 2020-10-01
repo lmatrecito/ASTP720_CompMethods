@@ -25,7 +25,7 @@ def read_coefficients(filename="A_coefficients.dat"):
     Adict = dict()
     for i in range(len(l)):
         Adict[(l[i], u[i])] = As[i]
-    return Adict
-
-p = read_coefficients()
-print(p)
+    return(Adict)
+# Checking to see if above works
+# p = read_coefficients()
+# print(p)
